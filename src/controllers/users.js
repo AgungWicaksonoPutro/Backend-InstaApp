@@ -2,6 +2,7 @@ const users = require('../models/users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const helpers = require('../helpers/response');
+const { userActivate } = require('../middlewares/mailer')
 
 
 module.exports = {
@@ -24,11 +25,17 @@ module.exports = {
                     const register = new users(data);
                     register.save()
                         .then(result=>{
-                            const registered = {
-                                _id : result._id,
-                                msg : 'Success! Cek Email To Activation..'
-                            }
-                            helpers.response(res, registered, 200, null);
+                            userActivate(result.email)
+                                .then(()=>{
+                                    const registered = {
+                                        _id : result._id,
+                                        msg : 'Success! Cek Email To Activation..'
+                                    }
+                                    helpers.response(res, registered, 200, null);
+                                })
+                                .catch(err=>{
+                                    console.log(err)
+                                })
                         })
                         .catch(err=>{
                             console.log(err)
@@ -49,7 +56,8 @@ module.exports = {
                     if(!compare) return helpers.response(res, {msg: 'Password Wrong!'}, 200, null)
                     const payload = {
                         id: user._id,
-                        email: user.email
+                        email: user.email,
+                        isActive: user.isActive
                     }
                     jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: '1h'}, (err, token)=>{
                         if(err) return console.log(err)
