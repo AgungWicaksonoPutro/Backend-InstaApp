@@ -6,7 +6,7 @@ module.exports = {
         <head>
             <meta name="viewport" content="width=device-width" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <title>Simple Transactional Email</title>
+            <title>Transactional Email</title>
             <style>
             img {
                 border: none;
@@ -234,7 +234,7 @@ module.exports = {
                                 <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                 <tbody>
                                     <tr>
-                                    <td align="left">
+                                    <td align="center">
                                         <table border="0" cellpadding="0" cellspacing="0">
                                         <tbody>
                                             <tr>
@@ -263,12 +263,12 @@ module.exports = {
                         <tr>
                         <td class="content-block">
                             <span class="apple-link">clone instagram project</span>
-                            <br> Don't like these emails? <a href="#">Unsubscribe</a>.
+                            /* <br> Don't like these emails? <a href="#">Unsubscribe</a>. */
                         </td>
                         </tr>
                         <tr>
                         <td class="content-block powered-by">
-                            Powered by <a href="#">Agung</a>.
+                            Powered by <a href="#">Agung Wicaksono Putro</a>.
                         </td>
                         </tr>
                     </table>

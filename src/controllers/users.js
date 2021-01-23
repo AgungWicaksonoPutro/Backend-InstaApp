@@ -49,6 +49,7 @@ module.exports = {
         users.findOne({email}, (err, result)=>{
             if(err) console.log(err)
             if(result === null) return helpers.response(res, {msg: 'Email Not Found!'}, 200, null)
+            if(!result.isActive) return helpers.response(res, {msg: 'Please Actived Your Mail!'}, 200, null)
             const user = result
             const hash = user.password
             bcrypt.compare(password, hash)
