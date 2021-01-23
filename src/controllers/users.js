@@ -11,20 +11,29 @@ module.exports = {
             name,
             email,
             password,
+            isActive: false,
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        bcrypt.genSalt(10, (err, salt)=>{
-            bcrypt.hash(data.password, salt, (err, hash)=>{
-                data.password = hash
-                const register = new users(data);
-                register.save()
-                    .then(result=>{
-                        helpers.response(res, result, 200, null);
-                    })
-                    .catch(err=>{
-                        console.log(err)
-                    })
+        users.find({email}, (err, result)=>{
+            if(err) return console.log(err)
+            if(result.length >= 1) return helpers.response(res, {msg: 'Email Is Already!'}, 200, null) 
+            bcrypt.genSalt(10, (err, salt)=>{
+                bcrypt.hash(data.password, salt, (err, hash)=>{
+                    data.password = hash
+                    const register = new users(data);
+                    register.save()
+                        .then(result=>{
+                            const registered = {
+                                _id : result._id,
+                                msg : 'Success! Cek Email To Activation..'
+                            }
+                            helpers.response(res, registered, 200, null);
+                        })
+                        .catch(err=>{
+                            console.log(err)
+                        })
+                })
             })
         })
     },
