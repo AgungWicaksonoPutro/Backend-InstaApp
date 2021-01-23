@@ -35,13 +35,12 @@ $ yarn install
 Create .env file in your root project folder.
 
 ```env
-DB_HOST = localhost
-DB_USER = root
-DB_PASSWORD = your_password
-DB_DATABASE = your_database
-PORT = 4000
-BASE_URL = http://localhost:4000/
-SECRET_KEY = your-secret
+PORT = set PORT
+HOST = set MongoDB
+SECRET_KEY = set Secret Key
+SERVICE = service for node mailer
+SERVICE_MAIL = set mail
+SERVICE_PASS = set pwd mail
 ```
 ## Run the app
 
