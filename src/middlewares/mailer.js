@@ -11,13 +11,14 @@ const transporter = nodemailer.createTransport({
 });
 
 module.exports = {
-    userActivate: (email)=>{
+    userActivate: (email, token)=>{
         return new Promise((resolve, reject)=>{
+            const url = `${process.env.BASE_URL_FRONTEND}/verify-account?token=${token}`
             const mailOptions = {
                 from: process.env.SERVICE_MAIL,
                 to: email,
                 subject: 'New Regristration',
-                html: template.template('#', 'Confirm')
+                html: template.template(url, 'Confirm')
             }
             transporter.sendMail(mailOptions, (err, info)=>{
                 if(err) return reject(err)

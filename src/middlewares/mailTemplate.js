@@ -238,7 +238,7 @@ module.exports = {
                                         <table border="0" cellpadding="0" cellspacing="0">
                                         <tbody>
                                             <tr>
-                                            <td> <a href="${link}" target="_blank">${type}</a> </td>
+                                            <td> <a href="${link}">${type}</a> </td>
                                             </tr>
                                         </tbody>
                                         </table>
